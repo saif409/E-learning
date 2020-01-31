@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+
+{% endblock %}
+{% block stylesheet %}
+<style>
+ .container_image{
+            position: relative !important;
+            margin: 0 auto !important;
+        }
+
+        .container_image img{
+            width: 100%;
+            height: 200px;
+        }
+
+        .text_on_image{
+              position: absolute !important;
+              bottom: 0 !important;
+              color: #f1f1f1 !important;
+              width: 100% !important;
+              padding: 30px !important;
+        }
+</style>
+{% endblock %}
+{% block body %}
+   <div class="row">
+         <div class="container-fluid container_image" style="padding:0px;">
+               <img src="{% static 'images/background.png' %}">
+               <div class="col-md-12 text-center text_on_image">
+                   <h3 class="h3" style="color:#fff;">A revolution in learning. The evolution of you </h3>
+                   <h4 style="color:#fff;"> Learn the most in-demand business, tech and creative skills from industry experts<br></h4>
+               </div>
+        </div>
+    </div>
+{% endblock %}
+{% block profile %}
+{% endblock %}
+{% block content %}
+<div class="col-lg-12">
+    <div class="col-lg-11">
+        <div class="col-lg-offset-1">
+    <div class="row" style="margin-top:30px;">
+        <div class="col-lg-offset-2" >
+        <img src="{% static 'images/Cadpture.PNG'%}" class="img-responsive">
+        </div>
+        <p style="margin-top:20px; text-align: justify;">Along with FAQ and Contact pages, the About Us page is one of the first
+            supporting pages you'll likely create for your website, regardless of
+            the industry you're in. They may go by different labels—“About”, “Story”.
+            “Mission”—but these types of pages generally serve the same key purpose:
+            to be the go-to page for a brand to say, “This is who we are.” When a visitor
+            wants to learn more about you or your business, it's the page they'll look for.
+            Unfortunately, About Us pages are too often treated as an obligation rather
+            than the valuable opportunity they are to connect with your customers by
+            selling your story, your vision, your mission, and what makes you, YOU.
+            That's because your About Us page is the ideal place to accommodate a number of objectives:
+            Communicate the story of your business and why you started it.
+            Describe the customers or the cause that your business serves.
+            Explain your business model or how your products are made.
+            Put a face to your business, featuring the founders or the people on your team.
+            Incorporate persuasive content (e.g. an explainer video, data visualizations, links to blog
+            posts) that might otherwise clutter your homepage.</p>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load staticfiles %}
+{% block title %}
+{{ post.title }}
+{% endblock %}
+{% block stylesheet %}
+{% endblock %}
+{% block profile %}
+{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-lg-12">
+				<div class="col-lg-8">
+					<figure class="animate-box">
+							<iframe class="col-lg-12"  src="{{ post.video.url }}" style="height:450px; margin-top:30px;"></iframe>
+					</figure>
+						<div class="col-lg-12">
+							<h5 class="col-lg-0">details</h5>
+								<div class="col-lg-12" style="height:2px; background:#bfbfbf !important;"></div>
+						</div>
+					   <div class="col-lg-12">
+							<h3 class="fh5co-article-title animate-box" style="text-align:justify;">{{ post.title}}</h3>
+							<h4 style="text-align:justify;"><a  href="">Author : {{post.article_author}}</a></h4>
+							<span class="fh5co-meta animate-box"  style="text-align:justify;"><a href="">Category : {{post.category.name}}</a></span>
+							<p class="fh5co-article-title animate-box" style="text-align:justify;">{{ post.body}}</p>
+					   </div>
+				</div>
+
+		        <div class="col-lg-4" style="margin-top:25px;">
+					<h4 >Watch Next</h4>
+					<h4 class="related" style="height:2px; background-color:red;"></h4>
+					{% for r in related %}
+				    <div class="row list_container" style="height:25px;">
+						<div class="col-md-5">
+							<a href="{% url 'single_post' id=r.id %}"><video  class="video-js" style="height:80px;width:150px;" preload="auto" src="{{ r.video.url }}" ></video></a>
+						</div>
+						<div class="col-md-7" style="line-height:67px !important;">
+							<p class="fh5co-article-title animate-box">{{ r.title}}</p>
+						</div>
+				    </div>
+					{% endfor %}
+				</div>
+	</div>
+</div>
+
+
+<div class="col-lg-0 col-md-0 col-xs-0 col-xl-0">
+	<div class="col-lg-12 col-md-12 col-xs-12 col-xl-12" >
+		<div class="col-lg-10">
+			<h5 class="col-lg-12 col-md-12 col-xs-12 col-xl-12" style="height:20px; background-color:#bfbfbf; border: 1px solid black;">Comments</h5>
+				         <div class="single_post_comment">
+					           {% for comment in comment %}
+						     <div class="single_comment">
+								<h4><img src="http://icons.iconarchive.com/icons/icons8/ios7/512/Users-User-Male-2-icon.png" alt="" style="height: 27px;margin-right: 10px;">{{ comment.name }}</h4>
+								<p>{{ comment.post_comment }}</p>
+						     </div>
+							   {% empty %}
+								<h4>Sorry no comment found</h4>
+								{% endfor %}
+				         </div>
+
+						<div class="panel panel-success" style="background-color:#fff;">
+								<div class="panel-heading">
+									<h3 class="panel-title" style="color:#fff;">Comment</h3>
+								</div>
+								 <div class="panel-body">
+									  <form action="" method="POST">
+									  {% csrf_token %}
+									  {{ form.as_p }}
+									  <button class="btn btn-success" type="submit">Comment</button>
+									  </form>
+								 </div>
+						</div>
+
+		</div>
+    </div>
+</div>
+
+{% endblock %}
+{% block script %}
+{% endblock %}

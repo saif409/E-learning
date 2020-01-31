@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+
+{% endblock %}
+{% block stylesheet %}
+
+{% endblock %}
+{% block body %}
+        <div class="row" style="margin-top:-30px;">
+         <div class="container-fluid" style="height:200px;margin-top:0px;margin-bottom:10px;background-image:url({% static 'images/background.png' %})">
+             <div class="col-lg-offset-2" style="padding-top:40px;">
+                 <p class="h3" style="color:#fff;">A revolution in learning. The evolution of you </p>
+                <p class="h4" style="color:#fff;"> Learn the most in-demand business, tech and creative skills from industry experts<br></p>
+             </div>
+         </div>
+    </div>
+{% endblock %}
+{% block content %}
+ <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box" >
+            <figure>
+                <a href="{% url 'single_post' id=p.id %}">
+                    <video width="75%" height="75%" class="video-js" preload="auto" src="{{ p.video.url }}" style="width: 100%; height: 100%"></video>
+                </a>
+            </figure>
+            <span class="fh5co-meta"><a href="{% url 'topic' name=p.category.name %}">{{ p.category.name }}</a></span>
+            <h6 class="fh5co-article-title"><a href="{% url 'single_post' id=p.id %}">{{ p.title }}</a></h6>
+            <h4><a href="{% url 'author' name=p.article_author.name.username %}">{{ p.article_author.name.get_full_name }}</a></h4>
+            <span class="fh5co-meta fh5co-date">{{ p.posted_on }}</span>
+        </article>
+
+{% endblock %}
+{% block script %}
+
+{% endblock %}

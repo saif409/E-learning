@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+
+{% endblock %}
+{% block stylesheet %}
+
+{% endblock %}
+{% block body %}
+        <div class="row" style="margin-top:-30px;">
+         <div class="container-fluid" style="height:200px;margin-top:0px;margin-bottom:10px;background-image:url({% static 'images/background.png' %})">
+             <div class="col-lg-offset-2" style="padding-top:40px;">
+                 <p class="h3" style="color:#fff;">A revolution in learning. The evolution of you </p>
+                <p class="h4" style="color:#fff;"> Learn the most in-demand business, tech and creative skills from industry experts<br></p>
+             </div>
+         </div>
+    </div>
+{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-lg-offset-8 col-lg-4" style="margin-top:-980px;">
+		  <div class="sideber" style="" >
+				<h4 style="margin-left: 5px;">Watch Next</h4>
+				<h4 class="related" style="height:2px; background-color:red;"></h4>
+				{% for r in related %}
+				<div class="row list_container" style="height:25px;">
+					<div class="col-md-5">
+						<a href="{% url 'single_post' id=r.id %}"><video  class="video-js" style="height:80px;width:150px;margin-top:1px;" preload="auto" src="{{ r.video.url }}" ></video></a>
+					</div>
+					<div class="col-md-7" style="line-height:67px !important;">
+						<p class="fh5co-article-title animate-box">{{ r.title}}</p>
+					</div>
+				</div>
+				{% endfor %}
+		  </div>
+	</div>
+</div>
+
+{% endblock %}
+{% block script %}
+
+{% endblock %}

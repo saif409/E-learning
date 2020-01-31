@@ -1,0 +1,40 @@
+
+	<!-- END #fh5co-header -->
+
+    <div class="allpost">
+    {% for p in post %}
+
+        <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box" >
+            <figure>
+                <a href="{% url 'single_post' id=p.id %}">
+<!--                    <iframe  type="video/webm" preload="auto" loop autoplay muted></iframe>-->
+                    <video width="75%" height="75%" class="video-js" preload="auto" src="{{ p.video.url }}" style="width: 100%; height: 100%"></video>
+
+                </a>
+            </figure>
+            <span class="fh5co-meta"><a href="{% url 'topic' name=p.category.name %}">{{ p.category.name }}</a></span>
+            <h2 class="fh5co-article-title"><a href="{% url 'single_post' id=p.id %}">{{ p.title }}</a></h2>
+            <h4><a href="{% url 'author' name=p.article_author.name.username %}">{{ p.article_author.name.get_full_name }}</a></h4>
+            <span class="fh5co-meta fh5co-date">{{ p.posted_on }}</span>
+        </article>
+    {% endfor %}
+
+    <div class="clear-fix"></div>
+    </div>
+    <div class="pagination">
+    <span class="step-links">
+        {% if post.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ post.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ post.number }} of {{ post.paginator.num_pages }}.
+        </span>
+
+        {% if post.has_next %}
+            <a href="?page={{ post.next_page_number }}">next</a>
+            <a href="?page={{ post.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>

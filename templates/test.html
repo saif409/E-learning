@@ -1,0 +1,50 @@
+<div class="row">
+	<div class="col-lg-12">
+		<div class="col-lg-8">
+				<div class="row">
+					<div class="col-lg-12">
+						<figure class="animate-box">
+							<iframe class="col-lg-12"  src="{{ post.video.url }}" style="height:450px;"></iframe>
+						</figure>
+					</div>
+				</div>
+				<div class="row">
+					<h5 class="col-sm-1" style="">details</h5>
+				</div>
+				<div class="col-sm-12" style="height:10px; background-color:#bfbfbf;"></div>
+				<div class="row">
+					<div class="col-lg-10">
+						<p class="fh5co-article-title animate-box" style="text-align:justify;font-size:30px;">{{ post.title}}</p>
+						<h4 style="text-align:justify;"><a  href="">Author : {{post.article_author}}</a></h4>
+						<span class="fh5co-meta animate-box"  style="text-align:justify;"><a href="">Category : {{post.category.name}}</a></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-10 cp-r animate-box">
+						<p  style="color:#000;text-align: justify;padding-left:0px;">{{post.body}}</p>
+					</div>
+		        </div>
+				<span class="fh5co-meta fh5co-date animate-box" style="text-align: justify;">{{post.posted_on}}</span>
+         </article>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-4">
+		  <div class="sideber" style="" >
+				<h4 >Watch Next</h4>
+				<h4 class="related" style="height:2px; background-color:red;"></h4>
+				{% for r in related %}
+				<div class="row list_container" style="height:25px;">
+					<div class="col-md-5">
+						<a href="{% url 'single_post' id=r.id %}"><video  class="video-js" style="height:80px;width:150px;" preload="auto" src="{{ r.video.url }}" ></video></a>
+					</div>
+					<div class="col-md-7" style="line-height:67px !important;">
+						<p class="fh5co-article-title animate-box">{{ r.title}}</p>
+					</div>
+				</div>
+				{% endfor %}
+		  </div>
+	</div>
+</div>
+</div>
+</div>

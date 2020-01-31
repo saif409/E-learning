@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+
+{% endblock %}
+{% block stylesheet %}
+<style>
+    #fh5co-header
+    {
+        padding : 0 !important;
+    }
+    .fh5co-nav-toggle i
+    {
+        margin-top: 80px;
+        margin-left: 20px;
+    }
+    .container_image
+    {
+        position: relative !important;
+        margin: 0 auto !important;
+    }
+
+    .container_image img
+    {
+        width: 100%;
+        height: 200px;
+    }
+
+    .text_on_image
+    {
+        position: absolute !important;
+        bottom: 0 !important;
+        background: rgb(0, 0, 0) !important;
+        background: rgba(0, 0, 0, 0.2) !important;
+        color: #f1f1f1 !important;
+        width: 100% !important;
+        padding: 30px !important;
+    }
+
+
+
+    html, body
+    {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .mainmenu, .submenu
+    {
+       list-style: none;
+       padding: 0;
+       margin: 0;
+    }
+    .mainmenu a
+    {
+      display: block;
+      background-color: #CCC;
+      text-decoration: none;
+      padding: 10px;
+      color: #000;
+    }
+    .mainmenu a:hover
+    {
+        background-color: #348ab3;
+    }
+
+    .submenu a
+    {
+        background-color: #999;
+    }
+    .submenu a:hover
+    {
+        background-color: #348ab3;
+    }
+
+    .submenu
+    {
+        display:none;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+ <div class="row">
+         <div class="container-fluid container_image" style="padding:0px;">
+               <img src="{% static 'images/background.png' %}">
+               <div class="col-md-12 text-center text_on_image">
+                   <h3 class="h3" style="color:#fff;">A revolution in learning. The evolution of you </h3>
+                   <h4 style="color:#fff;"> Learn the most in-demand business, tech and creative skills from industry experts<br></h4>
+               </div>
+         </div>
+ </div>
+{% endblock %}
+{% block content %}
+    <div class="col-lg-12" style="margin-top:20px;">
+        <div class="col-lg-2">
+             <div class="navigation">
+                  <ul class="mainmenu">
+                      <div class="row">
+                       <div class="well well-sm" style="background-color:#046694;color:#fff">Category</div>
+                        <li><a class="dropdown" data-toggle="#English" style="cursor:pointer;"><input type="checkbox" name="vehicle" value="Bike"> English</a>
+                            <ul class="submenu dropdown-list" id="English" style="margin-left:20px;">
+                              <li><a href="" type=""><input type="checkbox" name="vehicle" value="Bike"> English 1</a></li>
+                               <li><a href=""><input type="checkbox" name="vehicle" value="Bike"> English 2</a></li>
+                               <li><a href=""><input type="checkbox" name="vehicle" value="Bike"> English 3</a></li>
+                            </ul>
+                        </li>
+                         <li><a class="dropdown" data-toggle="#Science" style="cursor:pointer;"><input type="checkbox" name="vehicle" value="Bike"> Science</a>
+                             <ul class="submenu dropdown-list" id="Science" style="margin-left:20px;">
+                                <li><a href=""><input type="checkbox" name="vehicle" value="Bike" checked> Science 1</a></li>
+                                <li><a href=""><input type="checkbox" name="vehicle" value="Bike" checked> Science 2</a></li>
+                                <li><a href=""><input type="checkbox" name="vehicle" value="Bike" checked> Science 3</a></li>
+                             </ul>
+                         </li>
+                         <li><a class="dropdown" data-toggle="#Bangla" style="cursor:pointer;"><input type="checkbox" name="vehicle" value="Bike"> Bangla</a>
+                             <ul class="submenu dropdown-list" id="Bangla" style="margin-left:20px;">
+                                <li><a href=""><input type="checkbox" name="vehicle" value="Bike"> Bangla 1</a></li>
+                                <li><a href=""><input type="checkbox" name="vehicle" value="Bike"> Bangla 2</a></li>
+                                <li><a href=""><input type="checkbox" name="vehicle" value="Bike"> Bangla 3</a></li>
+                             </ul>
+                         </li>
+                          </div>
+                  </ul>
+
+            </div>
+        </div>
+
+<div class="col-lg-10">
+            <div class="container">
+                <div class="well well-sm" style="background:#046694; color:#fff;font-size:20px; ">category</div>
+                <div class="row">
+                    {% for p in post %}
+                <div class="col-md-4" style="padding:0;margin-bottom:30px;">
+				     <div class="col-md-12">
+                         <div class="col-md-12" style="border: 1px solid black;background:#f0f0f0;">
+                             <a href="{% url 'single_post' id=p.id %}"><video  class="video-js" style="height:150px;width:100%;margin-top:13px;" preload="auto" src="{{ p.video.url }}" ></video></a>
+                             <a href="{% url 'single_post' id=p.id %}" ><h3 class="fh5co-article-title animate-box">{{p.title}}</h3></a>
+                             <a href="{% url 'topic' name=p.category.name %}" ><h3 class="fh5co-article-title animate-box" style="color:#bf953b">{{p.category.name}}</h3></a>
+                            <div class="cp-r animate-box">
+                                <p style="text-align: justify;font-size:13px;">{{p.body|truncatewords:15}}</p>
+                            </div>
+                            <div class="fh5co-meta fh5co-date animate-box">
+                                <p>{{p.posted_on}}</p>
+                            </div>
+                         </div>
+                     </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+        <div class="col-lg-offset-9">
+            <div class="pagination">
+                <span class="step-links">
+                    {% if post.has_previous %}
+                        <a href="?page=1">&laquo; first || </a>
+                        <a href="?page={{ post.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="current">
+                        Page {{ post.number }} of {{ post.paginator.num_pages }}.
+                    </span>
+                    {% if post.has_next %}
+                        <a href="?page={{ post.next_page_number }}">next ||</a>
+                        <a href="?page={{ post.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+       </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+    <script>
+            $('.dropdown').click(function () {
+              var target_id = $(this).attr('data-toggle');
+              $('.dropdown-list').not(target_id).slideUp();
+              $(target_id).slideToggle();
+              $('.dropdown-list').not(target_id).parents('li, .icon-tab').removeClass('active');
+              $('.dropdown').not(this).parents(' .icon-tab').removeClass('active');
+              $(this).parents('li, .icon-tab').toggleClass('active');
+            });
+    </script>
+{% endblock %}
